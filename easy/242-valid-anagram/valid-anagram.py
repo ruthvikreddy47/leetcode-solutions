@@ -10,12 +10,7 @@ class Solution:
         res = {}
 
         for char in s:
-            if char in res:
-                val = res.get(char)
-                val = val + 1
-                res[char] = val
-            else:
-                res[char] = 1
+            res[char] = res.get(char, 0) + 1
         
         return res
         
