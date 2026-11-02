@@ -1,9 +1,6 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
 
-        if len(s) != len(t):
-             return False
-
         return self.toDict(s) == self.toDict(t)
 
     def toDict(self, s: str):
