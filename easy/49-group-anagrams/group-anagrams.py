@@ -1,35 +1,24 @@
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-        res = []
-        dicts = []
+        group = defaultdict(list)
+        result = []
 
         for s in strs:
-            out = {}
-            for char in s:
-                out[char] = out.get(char, 0) + 1
-            dicts.append(out)
+            key = tuple(self.countLettersArray(s))
+            group[key].append(s)
+        
+        for val in group.values():
+            result.append(val)
+        
+        return result
 
-        print(dicts)
-        visited = set()
+    
+    def countLettersArray(self, s: str)-> list[int]:
+        count = [0] * 26
 
-        for i in range(len(strs)):
-            if i in visited:
-                continue
-            
-            current_group = [strs[i]]
-            visited.add(i)
-            for j in range( i + 1, len(strs)):
-
-                if j in visited:
-                    continue
-
-                if dicts[i] == dicts[j]:
-                    current_group.append(strs[j])
-                    visited.add(j)
-            
-            res.append(current_group)
-
-        return res
-                
+        for letter in s:
+            count[ord(letter) - ord('a')] += 1
+        
+        return count
 
         
