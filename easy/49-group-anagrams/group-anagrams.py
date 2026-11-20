@@ -1,24 +1,19 @@
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-        group = defaultdict(list)
-        result = []
 
-        for s in strs:
-            key = tuple(self.countLettersArray(s))
-            group[key].append(s)
+        frequency = defaultdict(list)
+
+        for word in strs:
+            counts = [0] * 26
+            for char in word:
+                counts[ord(char) - ord('a')] += 1
+            frequency[tuple(counts)].append(word)
         
-        for val in group.values():
-            result.append(val)
+        result = []
+        for value in frequency.values():
+            result.append(value)
         
         return result
 
-    
-    def countLettersArray(self, s: str)-> list[int]:
-        count = [0] * 26
-
-        for letter in s:
-            count[ord(letter) - ord('a')] += 1
-        
-        return count
 
         
